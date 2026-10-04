@@ -1,11 +1,15 @@
 class Solution {
     fun solution(sizes: Array<IntArray>): Int {
-        var x = 0
-        var y = 0
-        sizes.forEach { card ->
-            x = maxOf(x, minOf(card[0], card[1]))
-            y = maxOf(y, maxOf(card[0], card[1]))
+        var maxW = 0
+        var maxH = 0
+        
+        sizes.forEach { size ->
+            val w = minOf(size[0], size[1])
+            val h = maxOf(size[0], size[1])
+            maxW = maxOf(maxW, w)
+            maxH = maxOf(maxH, h)
         }
-        return x * y
+        
+        return maxH * maxW
     }
 }
