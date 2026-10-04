@@ -1,13 +1,12 @@
 class Solution {
     fun solution(cards1: Array<String>, cards2: Array<String>, goal: Array<String>): String {
-        val daek1 = cards1.toMutableList()
-        val daek2 = cards2.toMutableList()
-        
-        for(i in goal) {
-            if (daek1.isNotEmpty() && daek1.first() == i) {
-                daek1.removeAt(0)
-            } else if (daek2.isNotEmpty() && daek2.first() == i) {
-                daek2.removeAt(0)
+        var index1 = 0
+        var index2 = 0
+        for (i in goal) {
+            if (index1 < cards1.size && cards1[index1] == i) {
+                index1++
+            } else if(index2 < cards2.size && cards2[index2] == i) {
+                index2++
             } else {
                 return "No"
             }
