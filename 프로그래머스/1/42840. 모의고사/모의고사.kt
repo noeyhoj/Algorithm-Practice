@@ -1,27 +1,23 @@
 class Solution {
     fun solution(answers: IntArray): IntArray {
-        val n = answers.size - 1
-        val a = listOf(1, 2, 3, 4, 5)
-        val aSize = a.size
+        val user1 = listOf(1, 2, 3, 4, 5)
+        val size1 = user1.size
         
-        val b = listOf(2, 1, 2, 3, 2, 4, 2, 5)
-        val bSize = b.size
+        val user2 = listOf(2, 1, 2, 3, 2, 4, 2, 5)
+        val size2 = user2.size
         
-        val c = listOf(3, 3, 1, 1, 2, 2, 4, 4, 5, 5)
-        val cSize = c.size
+        val user3 = listOf(3, 3, 1, 1, 2, 2, 4, 4, 5, 5)
+        val size3 = user3.size
         
-        val score = mutableListOf(0, 0, 0)
-        (0..n).forEach {
-            val answer = answers[it]
-            if (answer == a[it % aSize]) score[0] += 1
-            if (answer == b[it % bSize]) score[1] += 1
-            if (answer == c[it % cSize]) score[2] += 1
+        val result = mutableListOf(0, 0, 0)
+        
+        answers.indices.forEach {
+            if (answers[it] == user1[it % size1]) result[0]++
+            if (answers[it] == user2[it % size2]) result[1]++
+            if (answers[it] == user3[it % size3]) result[2]++
         }
-        val maxScore = score.maxOf{ it }
-        val result = mutableListOf<Int>()
-        (0..2).forEach {
-            if (score[it] == maxScore) result.add(it + 1)
-        }
-        return result.toIntArray()
+        
+        val maxScore = result.maxOf{ it }
+        return (0..2).filter { result[it] == maxScore }.map{ it + 1 }.toIntArray()
     }
 }
