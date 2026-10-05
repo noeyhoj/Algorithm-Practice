@@ -1,10 +1,13 @@
 class Solution {
     fun solution(t: String, p: String): Int {
-        val n = p.length
-        var result = 0
-        (0..t.length - n).forEach {
-            if (p.toLong() >= t.substring(it, it + n).toLong()) result++
+        val keysize = p.length
+        var count = 0
+        
+        for (idx in 0..t.length - keysize) {
+            val key = t.substring(idx until (idx + keysize))
+            if (key.toLong() <= p.toLong()) count++
         }
-        return result
+        
+        return count
     }
 }
