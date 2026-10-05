@@ -5,7 +5,7 @@ class Solution {
             var count = 0
             for (key in targets[idx]) {
                 val res = keymap.map { it.indexOf(key) }.filter { it != -1 }
-                if (res.all{ it == -1 }) {
+                if (res.isEmpty()) {
                     count = -1
                     break
                 }
