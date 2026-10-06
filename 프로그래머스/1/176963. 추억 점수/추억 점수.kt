@@ -1,13 +1,13 @@
 class Solution {
     fun solution(name: Array<String>, yearning: IntArray, photo: Array<Array<String>>): IntArray {
-        val answer = name.indices.associate {
+        val nameToScore = name.indices.associate {
             name[it] to yearning[it]
         }
         
-        return photo.toList().map { pho ->
-            pho.toList().map { name ->
-                answer[name]?.toString() ?: "0"
-            }.sumOf{ it.toInt() }
+        return photo.map { person ->
+            person.sumOf { people ->
+                nameToScore[people] ?: 0
+            }
         }.toIntArray()
     }
 }
