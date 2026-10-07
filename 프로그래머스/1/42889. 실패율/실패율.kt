@@ -1,14 +1,11 @@
 class Solution {
     fun solution(N: Int, stages: IntArray): IntArray {
-        val n = (1..N).associate { stage ->
-            val a = stages.count { it == stage }.toDouble()
-            val b = stages.count { it >= stage }
-            if (b == 0) {
-                stage to 0.0
-            } else {
-                stage to a / b
-            }
+        val a =  (1..N).associate { num ->
+            val total = stages.count { it >= num }.toDouble()
+            val numCount = stages.count { it == num }
+            
+            num to if (total == 0.0) 0.0 else (numCount / total)
         }
-        return n.keys.sortedByDescending { n[it] }.toIntArray()
+        return a.keys.sortedByDescending { a[it] }.toIntArray()
     }
 }
